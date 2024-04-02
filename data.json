@@ -1,0 +1,32 @@
+[
+    {
+        "id":"1",
+        "name":"world",
+        "image":"./assets/card-img-1.png"
+    },
+    {
+        "id":"2",
+        "name":"rainbow",
+        "image":"https://postimg.cc/vDspWxkk"
+    },
+    {
+        "id":"3",
+        "name":"cloud",
+        "image":"https://postimg.cc/G8Vt5JDF"
+    },
+    {
+        "id":"4",
+        "name":"world",
+        "image":"https://postimg.cc/Wd6Wn5Zk"
+    },
+    {
+        "id":"5",
+        "name":"rainbow",
+        "image":"https://postimg.cc/vDspWxkk"
+    },
+    {
+        "id":"6",
+        "name":"cloud",
+        "image":"https://postimg.cc/G8Vt5JDF"
+    }
+]
