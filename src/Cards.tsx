@@ -3,48 +3,47 @@ import { CARDS_ITEMS } from "./constants";
 import cover from "./assets/cover-card.png";
 import { useEffect, useState } from "react";
 
-type CardType = {
-  id: string;
-  image: any;
-  name: string;
-};
-
-type SelectedCard = {
+type SelectedCardType = {
   id: number;
   name: string;
 };
 
-// const hasCard = selectedId.some((i) => i.id !== id);
-
-// console.log(hasCard, "hascard");
-// if (hasCard) {
-//   setSelectedId((prev) => [...prev, { id, name }]);
-// } else {
-//   //problem is here
-//   setSelectedId([{ id, name }]);
-// }
-
 function Cards() {
-  const [selectedId, setSelectedId] = useState<SelectedCard[]>([]);
-
-  console.log(selectedId, "selectedid");
+  const [selectedCard, setSelectedCard] = useState<SelectedCardType[]>([]);
+  const [countWin, setCountWin] = useState<number>(0);
 
   const handelGetIdx = (id: number, name: string) => {
-    const x = selectedId.some((i) => i.id !== id);
-    if (x) {
-      setSelectedId((prev) => [...prev, { id, name }]);
-    } else {
-      setSelectedId([{ id, name }]);
+    const hasCard = selectedCard?.find((i) => i?.id === id);
+
+    if (!hasCard) {
+      setSelectedCard((prev) => [...prev, { id, name }]);
     }
-    console.log(x, "x");
-    console.log(selectedId, "sss");
   };
 
-  useEffect(() => {}, []);
+  function handleCalculateWin() {
+    const obj1 = selectedCard[0];
+    const obj2 = selectedCard[1];
 
-  console.log(selectedId);
+    if (selectedCard.length === 2 && obj1?.name === obj2?.name) {
+      console.log("WIN");
+      setCountWin((prev) => prev + 1);
+    } else if (selectedCard.length === 2) {
+      setTimeout(() => {
+        setSelectedCard([]);
+      }, 900);
+
+      setCountWin(0);
+    }
+  }
+
+  useEffect(() => {
+    handleCalculateWin();
+  }, [selectedCard]);
+
+  console.log(selectedCard, "ss");
   return (
-    <div className="flex justify-center items-center w-full h-screen">
+    <div className="flex flex-col justify-center items-center w-full h-screen">
+      <p className="text-2xl text-black font-bold my-6">WIN : {countWin}</p>
       <div className="w-[800px] h-[590px] rounded-3xl bg-blue-dark flex justify-center items-center flex-wrap">
         {CARDS_ITEMS.map((i, idx) => (
           <div
@@ -52,7 +51,12 @@ function Cards() {
             className="w-[200px] cursor-pointer h-[280px] flex justify-center items-center ml-2"
             onClick={() => handelGetIdx(i?.id, i?.name)}
           >
-            <img src={i.image} className="w-full" />
+            <img
+              src={
+                selectedCard.some((item) => item.id === i.id) ? i.image : cover
+              }
+              className="w-full"
+            />
           </div>
         ))}
       </div>

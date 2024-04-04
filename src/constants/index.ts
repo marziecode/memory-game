@@ -18,17 +18,17 @@ export const CARDS_ITEMS = [
   },
   {
     id: 4,
-    name: "world",
+    name: "rainbow",
     image: "../src/assets/card-img-4.png",
   },
   {
     id: 5,
-    name: "rainbow",
+    name: "cloud",
     image: "../src/assets/card-img-5.png",
   },
   {
     id: 6,
-    name: "cloud",
+    name: "world",
     image: "../src/assets/card-img-6.png",
   },
 ];
