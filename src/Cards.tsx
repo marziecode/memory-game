@@ -43,8 +43,11 @@ function Cards() {
   console.log(selectedCard, "ss");
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen">
-      <p className="text-2xl text-black font-bold my-6">WIN : {countWin}</p>
-      <div className="w-[800px] h-[590px] rounded-3xl bg-blue-dark flex justify-center items-center flex-wrap">
+      <div className="w-[100px] h-[40px] mb-[8px] flex justify-center items-center rounded-full mt-[8px] bg-blue-light">
+        <p className="text-2xl text-black font-bold my-6">WIN : {countWin}</p>
+      </div>
+
+      <div className="w-[760px] h-[560px] rounded-3xl bg-blue-dark flex justify-center items-center flex-wrap">
         {CARDS_ITEMS.map((i, idx) => (
           <div
             key={idx}
