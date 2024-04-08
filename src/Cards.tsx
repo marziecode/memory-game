@@ -42,23 +42,23 @@ function Cards() {
 
   console.log(selectedCard, "ss");
   return (
-    <div className="flex flex-col justify-center items-center w-full h-screen">
-      <div className="w-[100px] h-[40px] mb-[8px] flex justify-center items-center rounded-full mt-[8px] bg-blue-light">
-        <p className="text-2xl text-black font-bold my-6">WIN : {countWin}</p>
+    <div className="flex flex-col justify-center items-center w-full h-screen bg-[#212121]">
+      <div className="w-[100px] h-[30px]  flex justify-center items-center rounded-full mt-[6px] mb-[6px] bg-[#535C91]">
+        <p className="text-1xl text-[#fff] font-bold my-6">WIN : {countWin}</p>
       </div>
 
-      <div className="w-[760px] h-[560px] rounded-3xl bg-blue-dark flex justify-center items-center flex-wrap">
+      <div className="w-[760px] h-[560px] rounded-3xl bg-[#070F2B] flex justify-center items-center flex-wrap">
         {CARDS_ITEMS.map((i, idx) => (
           <div
             key={idx}
             className="w-[200px] cursor-pointer h-[280px] flex justify-center items-center ml-2"
             onClick={() => handelGetIdx(i?.id, i?.name)}
           >
-            <img
+            <img 
               src={
                 selectedCard.some((item) => item.id === i.id) ? i.image : cover
               }
-              className="w-full"
+              className="w-[175px]"
             />
           </div>
         ))}
