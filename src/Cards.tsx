@@ -34,6 +34,28 @@ function Cards() {
     }
   }
 
+  const generateRandomData = () => {
+    const randNum = Math.floor(Math.random() * CARDS_ITEMS.length);
+    const sl = CARDS_ITEMS.slice(0, randNum);
+
+    let p: any = [];
+    CARDS_ITEMS.map((i) => {
+      const hasSl = sl.some((x) => x.id === i.id);
+      if (!hasSl) {
+        p.push(i);
+      }
+    });
+
+    setRandomCardData([...p, ...sl]);
+  };
+
+  const handleRefresh = () => {
+    setSelectedCard([]);
+    setCountWin(0);
+    setWinCardsName([]);
+    generateRandomData();
+  };
+
   useEffect(() => {
     if (selectedCard.length !== 0) {
       handleCalculateWin();
@@ -41,16 +63,7 @@ function Cards() {
   }, [selectedCard]);
 
   useEffect(() => {
-    var min = 0;
-    var max = CARDS_ITEMS.length;
-    const randCardData = () => {
-      return CARDS_ITEMS.map((i) => ({
-        ...i,
-        id: Math.floor(Math.random() * (max - min)),
-      }));
-    };
-    setRandomCardData(randCardData());
-    console.log(randCardData());
+    generateRandomData();
   }, []);
 
   return (
@@ -58,6 +71,9 @@ function Cards() {
       <div className="w-[100px] h-[30px]  flex justify-center items-center rounded-full mt-[6px] mb-[6px] bg-[#535C91]">
         <p className="text-1xl text-[#fff] font-bold my-6">WIN : {countWin}</p>
       </div>
+      <button className="text-2xl text-white my-8" onClick={handleRefresh}>
+        Refresh
+      </button>
 
       <div className="w-[760px] h-[560px] rounded-3xl bg-[#070F2B] flex justify-center items-center flex-wrap">
         {randomCardData?.map((i, idx) => (
