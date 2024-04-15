@@ -9,8 +9,9 @@ type SelectedCardType = {
 };
 
 function Cards() {
-  const [selectedCard, setSelectedCard] = useState<SelectedCardType[]>([]);
   const [countWin, setCountWin] = useState<number>(0);
+  const [loosCount, setLooseCount] = useState<number>(0);
+  const [selectedCard, setSelectedCard] = useState<SelectedCardType[]>([]);
   const [winCardsName, setWinCardsName] = useState<SelectedCardType[]>([]);
   const [randomCardData, setRandomCardData] = useState<SelectedCardType[]>([]);
 
@@ -28,6 +29,7 @@ function Cards() {
       setSelectedCard([]);
       setWinCardsName((prev) => [...prev, ...selectedCard]);
     } else if (selectedCard.length === 2) {
+      setLooseCount((prv) => prv + 1);
       setTimeout(() => {
         setSelectedCard([]);
       }, 300);
@@ -54,11 +56,17 @@ function Cards() {
     setCountWin(0);
     setWinCardsName([]);
     generateRandomData();
+    setLooseCount(0);
   };
 
   useEffect(() => {
     if (selectedCard.length !== 0) {
       handleCalculateWin();
+    }
+    if (loosCount >= 2) {
+      setTimeout(() => {
+        handleRefresh();
+      }, 2000);
     }
   }, [selectedCard]);
 
@@ -67,19 +75,40 @@ function Cards() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-screen bg-[#212121]">
-      <div className="w-[100px] h-[30px]  flex justify-center items-center rounded-full mt-[6px] mb-[6px] bg-[#535C91]">
-        <p className="text-1xl text-[#fff] font-bold my-6">WIN : {countWin}</p>
-      </div>
-      <button className="text-2xl text-white my-8" onClick={handleRefresh}>
-        Refresh
-      </button>
+    <div className="flex flex-col justify-center items-center w-full h-screen bg-gradient-to-r from-[#525252] to-[#3d72b4]">
+      {loosCount >= 2 && (
+        <div className="absolute bg-red-500 w-[400px] h-[200px] flex flex-col justify-center items-center text-2xl text-white rounded-[25px] opacity-95">
+          <p>GAME OVER !</p>
+          <button className="text-2xl text-white my-8" onClick={handleRefresh}>
+            Refresh
+          </button>
+        </div>
+      )}
+      <div className="w-full h-[80px] flex justify-center items-center ">
+        <div className="w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#383597]">
+          <p className="text-1xl text-[#fff] font-bold my-3">
+            WIN : {countWin}
+          </p>
+        </div>
+        <div className="ml-[15px] w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#f74242]">
+          <p className="text-1xl text-[#fff] font-bold my-6">
+            Loose : {loosCount}
+          </p>
+        </div>
 
-      <div className="w-[760px] h-[560px] rounded-3xl bg-[#070F2B] flex justify-center items-center flex-wrap">
+        <button
+          className=" ml-[15px] text-1xl text-white w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#383597] cursor-pointer"
+          onClick={handleRefresh}
+        >
+          Refresh
+        </button>
+      </div>
+
+      <div className="w-[910px] h-[540px] rounded-3xl bg-[#070f2b87] flex justify-center items-center flex-wrap">
         {randomCardData?.map((i, idx) => (
           <div
             key={idx}
-            className="w-[200px] cursor-pointer h-[280px] flex justify-center items-center ml-2"
+            className="w-[200px] cursor-pointer h-[280px] flex justify-center items-center"
             onClick={() => handelGetIdx(i?.id, i?.name)}
           >
             <img
@@ -90,7 +119,7 @@ function Cards() {
                   ? i?.image
                   : cover
               }
-              className="w-[175px]"
+              className="w-[145px]"
             />
           </div>
         ))}
