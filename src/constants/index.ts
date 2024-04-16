@@ -1,34 +1,42 @@
-import cardOne from "../assets/card-img-1.png";
-
 export const CARDS_ITEMS = [
   {
     id: 1,
-    name: "world",
-    image: cardOne,
+    name: "johan",
+    image: "../src/assets/img-1.png",
   },
   {
     id: 2,
-    name: "rainbow",
-    image: "../src/assets/card-img-2.png",
+    name: "smith",
+    image: "../src/assets/img-2.png",
   },
   {
     id: 3,
-    name: "cloud",
-    image: "../src/assets/card-img-3.png",
+    name: "mia",
+    image: "../src/assets/img-3.png",
   },
   {
     id: 4,
-    name: "rainbow",
-    image: "../src/assets/card-img-4.png",
+    name: "sofia",
+    image: "../src/assets/img-5.png",
   },
   {
     id: 5,
-    name: "cloud",
-    image: "../src/assets/card-img-5.png",
+    name: "mia",
+    image: "../src/assets/img-3.png",
   },
   {
     id: 6,
-    name: "world",
-    image: "../src/assets/card-img-6.png",
+    name: "smith",
+    image: "../src/assets/img-2.png",
+  },
+  {
+    id: 7,
+    name: "johan",
+    image: "../src/assets/img-1.png",
+  },
+  {
+    id: 8,
+    name: "sofia",
+    image: "../src/assets/img-5.png",
   },
 ];

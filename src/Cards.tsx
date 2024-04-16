@@ -75,8 +75,8 @@ function Cards() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-screen bg-gradient-to-r from-[#525252] to-[#3d72b4]">
-      {loosCount >= 2 && (
+    <div className="flex flex-col justify-center items-center w-full h-screen bg-gradient-to-r from-[#525252] to-[#3d72b4] p-[35px] ">
+      {loosCount >= 3 && (
         <div className="absolute bg-red-500 w-[400px] h-[200px] flex flex-col justify-center items-center text-2xl text-white rounded-[25px] opacity-95">
           <p>GAME OVER !</p>
           <button className="text-2xl text-white my-8" onClick={handleRefresh}>
@@ -85,26 +85,26 @@ function Cards() {
         </div>
       )}
       <div className="w-full h-[80px] flex justify-center items-center ">
-        <div className="w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#383597]">
+        <div className="w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#3835975c]  ">
           <p className="text-1xl text-[#fff] font-bold my-3">
             WIN : {countWin}
           </p>
         </div>
-        <div className="ml-[15px] w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#f74242]">
+        <div className="ml-[15px] w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#f74242be] ">
           <p className="text-1xl text-[#fff] font-bold my-6">
             Loose : {loosCount}
           </p>
         </div>
 
         <button
-          className=" ml-[15px] text-1xl text-white w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#383597] cursor-pointer"
+          className=" ml-[15px] text-1xl text-white w-[100px] h-[30px]  flex justify-center items-center rounded-full  bg-[#383597] cursor-pointer "
           onClick={handleRefresh}
         >
           Refresh
         </button>
       </div>
 
-      <div className="w-[910px] h-[540px] rounded-3xl bg-[#070f2b87] flex justify-center items-center flex-wrap">
+      <div className="w-[910px] h-[540px] rounded-3xl bg-[#070f2b87] flex justify-center items-center flex-wrap mt-2">
         {randomCardData?.map((i, idx) => (
           <div
             key={idx}
